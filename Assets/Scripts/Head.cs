@@ -6,22 +6,11 @@ using System;
 public class Head : Cell
 {
     
-    private void Start()
-    {
-        forward = new Vector3Int(0, 10);
-        StartCoroutine(Movement());
-    }
-    
-    public override IEnumerator Movement()
-    {
-        while (true)
-        {
-            Move();
-            if(next!=null)
-                next.SetForward(forward);
-            yield return new WaitForSecondsRealtime(timeDelay);
-        }
-    }
+    //private void Start()
+    //{
+    //    GetComponentInParent<TailCreatingManager>().OnSetNewTail += AddNext;
+    //    forward = new Vector3Int(0, 10);
+    //}
 
     public override void Move()
     {

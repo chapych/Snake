@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class TailCreatingManager : MonoBehaviour
 {
@@ -13,16 +14,14 @@ public class TailCreatingManager : MonoBehaviour
         get { return tail; }
         set 
         { 
-            renderer = value.GetComponent<Renderer>();
             tail = value; 
         }
     }
-    private Renderer renderer;
 
+    public event Action<GameObject> OnSetNewTail = delegate {};
     private void Awake()
     {
         GetComponentInChildren<EatingSystem>().OnAddNewTail += HandlerOnAddNewTail;
-        renderer = tail.GetComponent<Renderer>();
     }
 
     
@@ -30,7 +29,6 @@ public class TailCreatingManager : MonoBehaviour
     {
         prefab.SetActive(true);
         Vector3Int spawnPosition = Vector3Int.FloorToInt(tail.transform.position);
-        Debug.Log(spawnPosition.y);
         StartCoroutine(WaitTillRestBodyMoved(spawnPosition));
         
 
@@ -40,8 +38,8 @@ public class TailCreatingManager : MonoBehaviour
     {
         yield return new WaitForSecondsRealtime(tail.GetComponent<Cell>().timeDelay);
         var newTail = Instantiate(prefab, spawnPosition, Quaternion.identity);
-
-        tail.GetComponent<Cell>().AddNext(newTail);
+        OnSetNewTail(newTail);
         tail = newTail;
+        newTail.transform.parent = this.transform;
     }
 }
