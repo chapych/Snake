@@ -18,7 +18,7 @@ public class TailCreatingManager : MonoBehaviour
         }
     }
 
-    public event Action<GameObject> OnSetNewTail = delegate {};
+    public event Action<GameObject> OnAddCell = delegate {};
     private void Awake()
     {
         GetComponentInChildren<EatingSystem>().OnAddNewTail += HandlerOnAddNewTail;
@@ -27,19 +27,18 @@ public class TailCreatingManager : MonoBehaviour
     
     private void HandlerOnAddNewTail()
     {
-        prefab.SetActive(true);
         Vector3Int spawnPosition = Vector3Int.FloorToInt(tail.transform.position);
         StartCoroutine(WaitTillRestBodyMoved(spawnPosition));
-        
-
     }
 
     IEnumerator WaitTillRestBodyMoved(Vector3 spawnPosition)
     {
         yield return new WaitForSecondsRealtime(tail.GetComponent<Cell>().timeDelay);
         var newTail = Instantiate(prefab, spawnPosition, Quaternion.identity);
-        OnSetNewTail(newTail);
-        tail = newTail;
         newTail.transform.parent = this.transform;
+        Debug.Log(newTail.transform.parent.name + "??" + tail.name);
+        OnAddCell(newTail);
+        tail = newTail;
+        
     }
 }

@@ -13,7 +13,6 @@ public class EatingSystem : MonoBehaviour
     {
         ICollectable item = collision.gameObject.GetComponent<ICollectable>();
         if (item == null) return;
-        Debug.Log("lalala");
         OnAddNewTail();
         item.Destroy();
     }

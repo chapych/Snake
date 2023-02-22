@@ -5,16 +5,24 @@ using System;
 
 public class Head : Cell
 {
-    
+
     //private void Start()
     //{
     //    GetComponentInParent<TailCreatingManager>().OnSetNewTail += AddNext;
     //    forward = new Vector3Int(0, 10);
     //}
+    public void Awake()
+    {
+        forward = new Vector3Int(0,10,0);
+        SetForward(forward);
+
+    }
 
     public override void Move()
     {
-        base.Move();
+        transform.position += forward;
+        if (next == null) return;
+        next.SetForward(forward);
     }
 
     

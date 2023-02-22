@@ -13,12 +13,15 @@ public class Cell : MonoBehaviour, ICell
     internal Vector3Int forward=new Vector3Int(0,0,0);
     [SerializeField]
     public int timeDelay = 1;
-    private Queue<Vector3Int> queue=new Queue<Vector3Int>();
+    internal Queue<Vector3Int> queue=new Queue<Vector3Int>();
+
+    
 
     public void Start()
     {
-        GetComponentInParent<TailCreatingManager>().OnSetNewTail += AddNext;
-        forward = new Vector3Int(0, 0, 0);
+        GetComponentInParent<TailCreatingManager>().OnAddCell += AddNext;
+
+        GetComponentInParent<MovementManager>().OnMove += Move;
     }
     public void SetForward(Vector3Int forward)
     {
@@ -27,6 +30,7 @@ public class Cell : MonoBehaviour, ICell
     
     public virtual void Move()
     {
+        forward = queue.Dequeue();
         transform.position += forward;
         if (next == null) return;
         next.SetForward(forward);
@@ -39,5 +43,6 @@ public class Cell : MonoBehaviour, ICell
         Cell nextCell = gameObject.GetComponent<Cell>();
         this.next = nextCell;
         next.SetForward(forward);
+        Debug.Log(forward);
     }
 }
