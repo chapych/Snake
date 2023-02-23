@@ -27,7 +27,7 @@ public class SpawnManager : MonoBehaviour
         }
     }
     void Spawn()
-    {
+    {;
         if (isAplleOnScreen) return;
         int width = mapData.width;
         int height = mapData.height;
