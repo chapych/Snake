@@ -5,7 +5,7 @@ using System;
 
 public class Head : Cell
 {
-
+    public int shift = 50;
     //private void Start()
     //{
     //    GetComponentInParent<TailCreatingManager>().OnSetNewTail += AddNext;
@@ -29,24 +29,24 @@ public class Head : Cell
     internal void TurnRight()
     {
         forward.y = 0;
-        forward.x=10;
+        forward.x=shift;
     }
 
     internal void TurnLeft()
     {
         forward.y = 0;
-        forward.x=-10;
+        forward.x=-shift;
     }
 
     internal void TurnUp()
     {
         forward.x = 0;
-        forward.y=10;
+        forward.y=shift;
     }
     internal void TurnDown()
     {
         forward.x = 0;
-        forward.y=-10;
+        forward.y=-shift;
     }
 
 }
