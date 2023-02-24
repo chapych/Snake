@@ -176,7 +176,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 112.87576
+  orthographic size: 496.40585
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -302,6 +302,7 @@ MonoBehaviour:
   mapData: {fileID: 11400000, guid: 2908803246cf6ac4e983071f9c5dd5bd, type: 2}
   isAplleOnScreen: 0
   head: {fileID: 2066780814}
+  snake: {fileID: 889946044}
 --- !u!4 &1754759749
 Transform:
   m_ObjectHideFlags: 0
@@ -333,6 +334,7 @@ GameObject:
   - component: {fileID: 2066780819}
   - component: {fileID: 2066780822}
   - component: {fileID: 2066780823}
+  - component: {fileID: 2066780824}
   m_Layer: 0
   m_Name: Head
   m_TagString: Untagged
@@ -356,6 +358,7 @@ MonoBehaviour:
   forward: {x: 0, y: 50, z: 0}
   timeDelay: 1
   shift: 50
+  mapData: {fileID: 11400000, guid: 2908803246cf6ac4e983071f9c5dd5bd, type: 2}
 --- !u!212 &2066780816
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -416,7 +419,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2066780814}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.2, y: -12.1, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 5, y: 5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -529,3 +532,15 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &2066780824
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2066780814}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ac8fef0a261e55478454677071444f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

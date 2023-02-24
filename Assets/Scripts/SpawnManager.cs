@@ -41,7 +41,7 @@ public class SpawnManager : MonoBehaviour
         {
             horizontal = grid * Random.Range(0, width / grid);////поделить на размер сетки
             vertical = grid * Random.Range(0, height / grid);
-        } while (IsCellFree(horizontal, vertical));
+        } while (!IsCellFree(horizontal, vertical));
         int spawningNumber = Random.Range(0, spawnCount);
 
         GameObject gameObject = Instantiate(spawningObjects[spawningNumber], new Vector3Int(horizontal, vertical), Quaternion.identity);
