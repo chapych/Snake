@@ -2,20 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using UnityEngine.InputSystem;
 
 public class Head : Cell
 {
-    public int shift = 50;
-    //private void Start()
-    //{
-    //    GetComponentInParent<TailCreatingManager>().OnSetNewTail += AddNext;
-    //    forward = new Vector3Int(0, 10);
-    //}
+    [SerializeField]
+    private int shift = 50;
+
+    public MapScriptableObject mapData;
+
+    public event Action<Vector3Int> OnRotateSprite = delegate{ };
+
     public void Awake()
     {
-        forward = new Vector3Int(0,10,0);
-        SetForward(forward);
+        shift = mapData.grid;
 
+        forward = new Vector3Int(0,shift,0);
+
+        SetForward(forward);
     }
 
     public override void Move()
@@ -25,28 +29,22 @@ public class Head : Cell
         next.SetForward(forward);
     }
 
-    
-    internal void TurnRight()
+    public void OnMovement(InputValue input) //Change Vector 'forward'
     {
-        forward.y = 0;
-        forward.x=shift;
+        if (input == null) return;
+
+        Vector2 inputVec = input.Get<Vector2>();
+
+        if (!IsNewDirectionPerpendicular(inputVec)) return; 
+
+        forward = shift * new Vector3Int((int)inputVec.x, (int)inputVec.y, 0);
+
+        OnRotateSprite(forward);
     }
 
-    internal void TurnLeft()
+    public bool IsNewDirectionPerpendicular(Vector3 newDirection)
     {
-        forward.y = 0;
-        forward.x=-shift;
-    }
-
-    internal void TurnUp()
-    {
-        forward.x = 0;
-        forward.y=shift;
-    }
-    internal void TurnDown()
-    {
-        forward.x = 0;
-        forward.y=-shift;
+        return Vector3.Scale(forward, newDirection) == Vector3.zero;
     }
 
 }

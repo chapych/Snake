@@ -16,14 +16,14 @@ public class InputSystem : MonoBehaviour
     void Update()
     {
         
-        if (Input.GetKeyDown(KeyCode.LeftArrow))
-            head.TurnLeft();
-        if(Input.GetKeyDown(KeyCode.RightArrow))
-            head.TurnRight();
-        if (Input.GetKeyDown(KeyCode.UpArrow))
-            head.TurnUp();
-        if (Input.GetKeyDown(KeyCode.DownArrow))
-            head.TurnDown();
+        //if (Input.GetKeyDown(KeyCode.LeftArrow))
+        //    head.TurnLeft();
+        //if(Input.GetKeyDown(KeyCode.RightArrow))
+        //    head.TurnRight();
+        //if (Input.GetKeyDown(KeyCode.UpArrow))
+        //    head.TurnUp();
+        //if (Input.GetKeyDown(KeyCode.DownArrow))
+        //    head.TurnDown();
     }
 
 }

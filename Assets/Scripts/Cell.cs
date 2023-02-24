@@ -6,7 +6,6 @@ using System;
 public class Cell : MonoBehaviour, ICell
 {
 
-    private Cell previous;
     [SerializeField]
     internal Cell next;
     [SerializeField]
@@ -14,8 +13,6 @@ public class Cell : MonoBehaviour, ICell
     [SerializeField]
     public int timeDelay = 1;
     internal Queue<Vector3Int> queue=new Queue<Vector3Int>();
-
-    
 
     public void Start()
     {
@@ -35,7 +32,6 @@ public class Cell : MonoBehaviour, ICell
         if (next == null) return;
         next.SetForward(forward);
     }
-
 
     public void AddNext(GameObject gameObject)
     {

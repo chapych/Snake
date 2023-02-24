@@ -24,7 +24,6 @@ public class MovementManager : MonoBehaviour
             OnMove();
             yield return new WaitForSecondsRealtime(timeDelay);
         }
-        
     }
 
     

@@ -11,6 +11,8 @@ public class SpawnManager : MonoBehaviour
     private bool isAplleOnScreen = false;
     [SerializeField]
     private GameObject head;
+    [SerializeField]
+    private GameObject snake;
 
     private void Start()
     {
@@ -31,18 +33,35 @@ public class SpawnManager : MonoBehaviour
         if (isAplleOnScreen) return;
         int width = mapData.width;
         int height = mapData.height;
+        int grid = mapData.grid;
         var spawnCount = spawningObjects.Length;
-        int horsontal = Random.Range(-width, width);////поделить на размер сетки
-        int vertical = Random.Range(-height, height);
+        int horizontal;
+        int vertical;
+        do
+        {
+            horizontal = grid * Random.Range(0, width / grid);////поделить на размер сетки
+            vertical = grid * Random.Range(0, height / grid);
+        } while (IsCellFree(horizontal, vertical));
         int spawningNumber = Random.Range(0, spawnCount);
 
-        GameObject gameObject = Instantiate(spawningObjects[spawningNumber], new Vector3Int(horsontal, vertical), Quaternion.identity);
+        GameObject gameObject = Instantiate(spawningObjects[spawningNumber], new Vector3Int(horizontal, vertical), Quaternion.identity);
         isAplleOnScreen = true;
     }
 
     void HandlerOnAddNewTail()
     {
         isAplleOnScreen = false;
+    }
+
+    bool IsCellFree(int horizontal, int vertical)
+    {
+        foreach(var cell in snake.GetComponentsInChildren<Cell>())
+        {
+            if (horizontal == cell.transform.position.x)
+                if (vertical == cell.transform.position.y)
+                    return false;
+        }
+        return true;
     }
 
 
