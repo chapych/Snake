@@ -39,8 +39,8 @@ public class SpawnManager : MonoBehaviour
         int vertical;
         do
         {
-            horizontal = grid * Random.Range(0, width / grid);////поделить на размер сетки
-            vertical = grid * Random.Range(0, height / grid);
+            horizontal = grid * Random.Range(-width / grid, width / grid);////поделить на размер сетки
+            vertical = grid * Random.Range(-height / grid, height / grid);
         } while (!IsCellFree(horizontal, vertical));
         int spawningNumber = Random.Range(0, spawnCount);
 

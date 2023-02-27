@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using UnityEngine.SceneManagement;
 
 public class EatingSystem : MonoBehaviour
 {
@@ -13,7 +14,7 @@ public class EatingSystem : MonoBehaviour
         if(collision.TryGetComponent<ICell>(out ICell cell))
         {
             OnEndGame();
-            Debug.Log("End");
+            SceneManager.LoadScene("Game");
         }
         ICollectable item = collision.gameObject.GetComponent<ICollectable>();
         if (item == null) return;
